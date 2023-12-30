@@ -3,6 +3,8 @@ import arg from 'arg'
 import chalk from 'chalk'
 import { getConfig } from '../src/config/config-mgr.js'
 import { start } from '../src/commands/start.js'
+import createLogger from '../src/logger.js'
+const logger = createLogger('bin')
 
 try {
     const args = arg({
@@ -15,7 +17,7 @@ try {
         start(config);
     }
 } catch (e) {
-    console.log(chalk.yellow(e.message))
+    logger.warning(e.message)
     console.log();
     usage()
 }
